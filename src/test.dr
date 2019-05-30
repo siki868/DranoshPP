@@ -1,0 +1,215 @@
+var    - lok
+for    - gor
+to     - gar
+if     - zug
+else   - ruh
+while  - swobu
+def    - tor
+print  - dabu
+return - zet
+import - regar
+input  - kagh
+and    - kug
+or     - tuk
+in     - gon
+True   - Dar
+False  - Nar
+
+---------------------------------
+# 1.
+# Za unetu visinu vratiti idealnu kilazu
+tor kilaza :: (visina : Int, tip : String){
+    zug tip == "Zensko" ? {
+        lok zensko = visina - 120;
+        zet zensko;
+    }
+    ruh zug tip == "Musko" ? {
+        lok musko = visina - 100;
+        zet musko;
+    }
+}
+
+zug idealna_za_vanzemaljca = kilaza : 210, "Musko"
+---------------------------------
+# 2.
+# Za visecifreni broj ispisuje veci ako im je zbir veci od 10 a inace manji
+tor len :: (str : String){
+    lok l = 1;
+    swobu str@l != '\0'{
+        l = l + 1;
+    }
+    zet l;
+}
+tor zbir :: (broj : Int){
+    lok cifre = str : broj;
+    lok zbir = 0;
+    gor i=0 gar len : cifre{
+        zbir = zbir + Int : cifre@i;
+    }
+    zug zbir > 10 ?{
+        dabu : "Veci"
+    }
+    ruh zug zbir > 10 ?{
+        dabu: "Manji"
+    }
+}
+
+zbir : 2999 # printuje "Veci"
+---------------------------------
+# 3.
+# Max od 4
+tor max4 :: (b1 : Int, b2 : Int, b3 : Int, b4 : Int){
+    lok max = 0;
+    zug b1 > b2 ?{
+        max = b1;
+    }
+    ruh ?{
+        max = b2;
+    }
+    zug b3 > max ?{
+        max = b3;
+    }
+    zug b4 > max?{
+        max = b4;
+    }
+    zet max;
+}
+---------------------------------
+# 4.
+# Srednja vrednost
+tor sredina :: (brojevi : [Int]){
+    lok d = len : brojevi;
+    lok sum = 0;
+    gor i=0 gar d{
+        sum = sum + brojevi@i;
+    }
+    sum = sum/d;
+    zet sum;
+}
+---------------------------------
+# 5.
+# Za uneti ceo broj ispisati toliko nasumičnih celih brojeva u intervalu od 1 do 100.
+regar Random;
+
+tor fja :: (br : Int){
+    gor i=0 gar br{
+        dabu : (Random.randint : 1, 100)
+    }
+}
+---------------------------------
+# 6.
+# Napisati program koji čita brojeve sve dok se ne unese negativni broj, a onda ispiše sve unete
+# brojeve, razdvojene zarezom, koji imaju ceo kvadratni koren.
+regar Math;
+
+tor fja :: () {    
+    lok brojevi = [];
+    lok br = int : (kagh :);
+
+    swobu br < 0 {
+        brojevi.append : br;
+        br = int : (kagh :);
+    }
+
+    gor i=0 gar len : brojevi{
+        zug type : (Math.sqrt : brojevi@i) == Int ?{
+             dabu : (str : brojevi@i).append : ",";
+        }  
+    }
+}
+
+# Pozivanje fje bez arg
+fja :
+---------------------------------
+# 7.
+# Napisati program koji za uneti tekst ispisuje isti taj tekst sa umetnutom tarabom (#) između
+# svakog uzastopnog pojavljivanja cifre i slova i zvezdicom (*) između svakog uzastopnog
+# pojavljivanja slova i cifre.
+
+tor is_digit :: (ch : Char){
+    zug type : (int : ch) == Int ?{
+        zet Dar;
+    }
+    ruh {
+        zet Nar;
+    }
+}
+
+tor is_letter :: (ch : Char){
+    lok svi = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+    zug ch gon svi ?{
+        zet Dar;
+    }
+    ruh {
+        zet Nar;
+    }
+}
+
+tor insert :: (){
+    lok text = kagh :;
+    gor i=0 gar len : text {
+        dabu : text@i;
+        zug is_digit : text@i kug is_letter : text@(i+1) ?{
+            dabu : "#";
+        }
+        ruh zug is_letter : text@i kug is_digit : text@(i+1) ?{
+            dabu : "*";
+        }
+    }
+}
+---------------------------------
+# 8.
+# Ispisivanje C style
+# Jbg nzm ovo posle cu
+tor ispisi :: (rec : String){
+    lok d = len : rec;
+
+}
+---------------------------------
+# 9.
+# Napisati program koji za unteti tekst ispisuje isti taj tekst ali tako da svaku reč dužu od n
+# karaktera, broj n se dobija kao parametar, ispisuje sa svim velikim slovima, ostale reči ispisuje
+# onako kako su unete. Reči su razdvojene razmacima i interpunkcijskim znacima.
+
+regar Funkcije;
+
+tor uradi :: (text : String, br : Int){
+    lok reg = " /"'.,\\]}|{}"
+    lok reci = Funkcije.split : text, reg;
+    gor rec gon reci {
+        zug len : rec > n ?{
+            dabu : Funkcije.to_upper : rec;
+        }
+        ruh{ 
+            dabu : rec;
+        }
+    }
+}
+
+# 10.
+# Napisati program koji poverava koliko se puta u fajlu na datoj putanji nalaze reči iz zadatog
+# skupa reči. Putanja do fajla se zadaje kao prvi argument, broj ključnih reči kao drugi, ostali
+# argumenti su klučne reči.
+
+regar IO;
+regat Funkcije;
+
+tor fja :: (path : String, n : Int, args : *){
+    lok d = {}
+    lok data = IO.read_file : path;
+    lok reci = Funkcije.split : data;
+    lok skup_reci = [];
+
+    gor i=0 gar n-1{
+        d@(args@i) = 0;
+        skup_reci.append : args@i;
+    }
+
+    gor rec gan reci{
+        zug rec gon skup_reci ?{
+            d@rec = d@rec + 1;
+        }
+    }
+
+    zet d;
+}
