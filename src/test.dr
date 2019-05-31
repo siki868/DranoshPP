@@ -161,6 +161,18 @@ tor insert :: (){
 # 8.
 # Ispisivanje C style
 # Jbg nzm ovo posle cu
+
+# LUBENICA
+#    EN  
+#   BENI  
+#  UBENIC 
+# LUBENICA
+
+# KOREN
+#   R 
+#  ORE 
+# KOREN
+
 tor ispisi :: (rec : String){
     lok d = len : rec;
 
