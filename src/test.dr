@@ -174,7 +174,22 @@ tor insert :: (){
 # KOREN
 
 tor ispisi :: (rec : String){
-    lok d = len : rec;
+    lok k = int : (len : rec / 2);
+    swobu k != 0 {
+        lok s = ""
+        gor i = 0 gar k {
+            s += ' ';
+        }
+        gor l = k gar len : rec - k {
+            s += rec[l];
+        } 
+        gor i = 0 gar k {
+            s += ' ';
+        }
+        k -= 1;
+        dabu : s;
+    }
+    dabu : rec;
 
 }
 ---------------------------------
