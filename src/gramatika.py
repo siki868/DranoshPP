@@ -1,3 +1,9 @@
+program             :           declarations
+
+declarations        :           (include_library | function_declaration | var_declaration_list)*
+
+include_library     :           REGAR ID SEMICOLON
+
 variable            :           ID
 
 type_spec           :           TYPE
@@ -52,6 +58,7 @@ False               :           NAR
 and                 :           KUG
 
 or                  :           TUK
+
 
 
 
