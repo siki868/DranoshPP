@@ -1,2 +1,2 @@
 # DranoshPP
-Projekat iz Programskih prevodioca
+Programming language based on orcish language from Warcraft series.
